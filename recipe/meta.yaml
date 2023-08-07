@@ -1,6 +1,6 @@
 {% set name = "yosys" %}
-{% set version = "0.31" %}
-{% set sha256 = "aadbd885b72a6c705035abcf7e2eb58d25689b18824ad91c71efd1d966f0bf50" %}
+{% set version = "0.32" %}
+{% set sha256 = "07b168491fa103a57231483a80f8e03545d0c957672e96b73d4eb9c8c8c43930" %}
 
 package:
   name: {{ name|lower }}
