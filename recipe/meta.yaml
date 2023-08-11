@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -22,7 +22,6 @@ requirements:
     - bison
     - make
     - pkg-config
-    - python
   host:
     - boost
     - flex
@@ -35,7 +34,6 @@ requirements:
     - graphviz
     - libffi
     - libzlib
-    - python
     - readline
     - tk
 
