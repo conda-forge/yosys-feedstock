@@ -23,6 +23,7 @@ requirements:
     - make
     - pkg-config
   host:
+    - compilers
     - libboost-python-devel
     - flex
     - libffi
