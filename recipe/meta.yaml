@@ -31,6 +31,7 @@ requirements:
     - libzlib
     - readline
     - tk
+    - wget
     - zlib
   run:
     - graphviz
