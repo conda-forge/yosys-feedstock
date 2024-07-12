@@ -3,12 +3,8 @@
 set -e
 set -x
 
-# clone abc now that its a submodule
-git clone https://github.com/YosysHQ/abc.git
-pushd abc
-# NOTE: this should match in yosys
-git checkout 237d81397fcc85dd3894bf1a449d2955cd3df02d
-popd
+# grab abc
+make wget-abc
 
 if [[ "${target_platform}" == "linux-64" ]]; then
     # expects `gcc`
