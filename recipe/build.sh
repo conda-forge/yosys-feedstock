@@ -6,6 +6,7 @@ set -x
 # clone abc now that its a submodule
 wget https://github.com/YosysHQ/yosys/releases/download/yosys-0.43/abc.tar.gz
 tar xfzv abc.tar.gz
+mv abc-yosys-experimental abc
 
 if [[ "${target_platform}" == "linux-64" ]]; then
     # expects `gcc`
