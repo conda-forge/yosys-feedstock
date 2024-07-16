@@ -10,6 +10,8 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/YosysHQ/{{ name }}/archive/refs/tags/yosys-{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - 0001-remove-abc-check.patch
 
 build:
   number: 0
