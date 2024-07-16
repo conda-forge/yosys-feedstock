@@ -1,0 +1,43 @@
+From 7ca49896433a4f649aa73402c8826e1153fe737f Mon Sep 17 00:00:00 2001
+From: Tim Paine <3105306+timkpaine@users.noreply.github.com>
+Date: Tue, 16 Jul 2024 11:57:17 -0400
+Subject: [PATCH] .
+
+---
+ Makefile | 21 ---------------------
+ 1 file changed, 21 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 1dec716e2..165491e9c 100644
+--- a/Makefile
++++ b/Makefile
+@@ -767,27 +767,6 @@ $(PROGRAM_PREFIX)yosys-config: misc/yosys-config.in $(YOSYS_SRC)/Makefile
+ .PHONY: check-git-abc
+ 
+ check-git-abc:
+-	@if [ ! -d "$(YOSYS_SRC)/abc" ]; then \
+-		echo "Error: The 'abc' directory does not exist."; \
+-		echo "Initialize the submodule: Run 'git submodule update --init' to set up 'abc' as a submodule."; \
+-		exit 1; \
+-	elif git -C "$(YOSYS_SRC)" submodule status abc 2>/dev/null | grep -q '^ '; then \
+-		exit 0; \
+-	elif [ -f "$(YOSYS_SRC)/abc/.gitcommit" ] && ! grep -q '\$$Format:%h\$$' "$(YOSYS_SRC)/abc/.gitcommit"; then \
+-		echo "'abc' comes from a tarball. Continuing."; \
+-		exit 0; \
+-	elif [ -f "$(YOSYS_SRC)/abc/.gitcommit" ] && grep -q '\$$Format:%h\$$' "$(YOSYS_SRC)/abc/.gitcommit"; then \
+-		echo "Error: 'abc' is not configured as a git submodule."; \
+-		echo "To resolve this:"; \
+-		echo "1. Back up your changes: Save any modifications from the 'abc' directory to another location."; \
+-		echo "2. Remove the existing 'abc' directory: Delete the 'abc' directory and all its contents."; \
+-		echo "3. Initialize the submodule: Run 'git submodule update --init' to set up 'abc' as a submodule."; \
+-		echo "4. Reapply your changes: Move your saved changes back to the 'abc' directory, if necessary."; \
+-		exit 1; \
+-	else \
+-		echo "Initialize the submodule: Run 'git submodule update --init' to set up 'abc' as a submodule."; \
+-		exit 1; \
+-	fi
+ 
+ abc/abc$(EXE) abc/libabc.a: check-git-abc
+ 	$(P)
+-- 
+2.44.0
