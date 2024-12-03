@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/YosysHQ/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
+  fn: {{ name }}.tar.gz
+  url: https://github.com/YosysHQ/{{ name }}/releases/download/{{ version }}/yosys.tar.gz
   sha256: {{ sha256 }}
 
 build:
