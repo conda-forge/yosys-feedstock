@@ -1,6 +1,6 @@
 {% set name = "yosys" %}
-{% set version = "0.47" %}
-{% set sha256 = "76038d3de2768567007e7c31995b17c888c16da1cf571d8a24b4c524d3eddfdf" %}
+{% set version = "0.48" %}
+{% set sha256 = "6218549aaadbfa79d43b29dbd01caf4e6ddc37bbeadf148d91c3b79526fd6ba1" %}
 
 package:
   name: {{ name|lower }}
@@ -8,11 +8,11 @@ package:
 
 source:
   fn: {{ name }}.tar.gz
-  url: https://github.com/YosysHQ/{{ name }}/releases/download/{{ version }}/yosys.tar.gz
+  url: https://github.com/YosysHQ/{{ name }}/releases/download/v{{ version }}/yosys.tar.gz
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
