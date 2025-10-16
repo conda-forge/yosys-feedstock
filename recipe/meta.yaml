@@ -20,11 +20,11 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
+    - gcc  # [linux]
     - bison
     - make
     - pkg-config
   host:
-    - compilers
     - libboost-python-devel
     - flex
     - libffi
