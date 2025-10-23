@@ -19,7 +19,7 @@ docker_image:
 libboost_python_devel:
 - '1.88'
 libffi:
-- '3.4'
+- '3.5'
 readline:
 - '8'
 target_platform:
