@@ -21,6 +21,9 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - gcc  # [linux]
+    - gxx  # [linux]
+    - clang  # [osx]
+    - clangxx  # [osx]
     - bison
     - make
     - pkg-config
