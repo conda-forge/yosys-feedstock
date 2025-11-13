@@ -5,10 +5,7 @@ set -x
 
 if [[ "${target_platform}" == "linux-64" ]]; then
     # expects `gcc`
-    ln -s $GCC $BUILD_PREFIX/bin/gcc
-
-    # TODO this doesnt work
-    # alias gcc=$CC
+    # ln -s $GCC $BUILD_PREFIX/bin/gcc
 
     make CONFIG=gcc -j $(nproc)
 
