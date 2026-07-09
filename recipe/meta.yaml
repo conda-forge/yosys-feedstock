@@ -25,10 +25,11 @@ requirements:
     - clang  # [osx]
     - clangxx  # [osx]
     - bison
+    - cmake
     - make
     - pkg-config
+    - python
   host:
-    - libboost-python-devel
     - flex
     - libffi
     - libzlib

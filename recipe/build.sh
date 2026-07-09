@@ -1,15 +1,8 @@
-#! /bin/bash
+#!/bin/bash
 
 set -e
 set -x
 
-if [[ "${target_platform}" == "linux-64" ]]; then
-    make CONFIG=gcc -j $(nproc)
-else
-    make CONFIG=clang -j $(sysctl -n hw.physicalcpu)
-    
-fi
-
-
-# install
-make install
+cmake -S . -B build ${CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel "${CPU_COUNT:-2}"
+cmake --install build
