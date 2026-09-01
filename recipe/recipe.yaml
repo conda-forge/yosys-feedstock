@@ -1,0 +1,69 @@
+schema_version: 1
+
+context:
+  name: yosys
+  version: "0.68"
+  sha256: ad8d2198e1a486e9089cc51a3158ecc764669267879518723fb98acc6fb24787
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/YosysHQ/${{ name }}/releases/download/v${{ version }}/yosys.tar.gz
+  sha256: ${{ sha256 }}
+
+build:
+  number: 2
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - if: linux
+      then: gcc
+    - if: linux
+      then: gxx
+    - if: osx
+      then: clang
+    - if: osx
+      then: clangxx
+    - bison
+    - cmake
+    - make
+    - pkg-config
+    - python
+  host:
+    - flex
+    - libffi
+    - libzlib
+    - readline
+    - tk
+    - zlib
+  run:
+    - graphviz
+    - libffi
+    - libzlib
+    - readline
+    - tk
+
+tests:
+  - script:
+      - yosys-config --prefix
+      - yosys-config --ldflags
+
+about:
+  license: ISC
+  license_file: COPYING
+  summary: Yosys Open SYnthesis Suite
+  description: |
+    This is a framework for RTL synthesis tools. It currently has extensive Verilog-2005 support and provides a basic set of synthesis algorithms for various application domains.
+  homepage: https://github.com/YosysHQ/yosys
+  repository: https://github.com/YosysHQ/yosys
+
+extra:
+  recipe-maintainers:
+    - whitequark
+    - timkpaine
