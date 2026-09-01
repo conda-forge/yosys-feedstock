@@ -12,7 +12,6 @@ package:
 source:
   url: https://github.com/YosysHQ/${{ name }}/releases/download/v${{ version }}/yosys.tar.gz
   sha256: ${{ sha256 }}
-  file_name: ${{ name }}.tar.gz
 
 build:
   number: 2
