@@ -2,8 +2,8 @@ schema_version: 1
 
 context:
   name: yosys
-  version: "0.68"
-  sha256: ad8d2198e1a486e9089cc51a3158ecc764669267879518723fb98acc6fb24787
+  version: "0.69"
+  sha256: 6dad6412cae417f5a53e2c943c2aee160162cfc1bdd31669230da1b7e3522571
 
 package:
   name: ${{ name|lower }}
@@ -14,7 +14,7 @@ source:
   sha256: ${{ sha256 }}
 
 build:
-  number: 2
+  number: 0
   skip: win
 
 requirements:
@@ -23,13 +23,13 @@ requirements:
     - ${{ stdlib("c") }}
     - ${{ compiler('cxx') }}
     - if: linux
-      then: gcc
-    - if: linux
-      then: gxx
+      then:
+        - gcc
+        - gxx
     - if: osx
-      then: clang
-    - if: osx
-      then: clangxx
+      then:
+        - clang
+        - clangxx
     - bison
     - cmake
     - make
