@@ -18,6 +18,8 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '21'
+libboost_devel:
+- '1.90'
 libffi:
 - '3.7'
 macos_machine:

@@ -12,6 +12,9 @@ package:
 source:
   url: https://github.com/YosysHQ/${{ name }}/releases/download/v${{ version }}/yosys.tar.gz
   sha256: ${{ sha256 }}
+  patches:
+    # Import the conda Slang library for the SystemVerilog frontend and ABC's sn tool.
+    - system-slang.patch
 
 build:
   number: 0
@@ -31,32 +34,77 @@ requirements:
         - clang
         - clangxx
     - bison
-    - cmake
+    - cmake >=3.28
     - make
     - pkg-config
     - python
   host:
     - flex
+    - fmt >=12.2
+    - libboost-devel
     - libffi
     - libzlib
     - readline
+    - slang-verilog ==12.0
+    - mimalloc >=3.5
     - tk
+    - tomlplusplus >=3.4
     - zlib
   run:
     - graphviz
     - libffi
     - libzlib
     - readline
+    - ${{ pin_compatible('slang-verilog', upper_bound='x') }}
     - tk
+  ignore_run_exports:
+    by_name:
+      # Boost supplies headers; mimalloc is a dependency of slang-verilog.
+      - libboost
+      - libboost-headers
+      - libboost-devel
+      - mimalloc
 
 tests:
   - script:
       - yosys-config --prefix
       - yosys-config --ldflags
+      - yosys -V
+      - yosys -p 'read_verilog smoke.v; synth -top smoke -noabc; abc -g AND,XOR; check -assert; select -assert-none t:$and t:$xor; select -assert-count 1 t:$_AND_; select -assert-count 1 t:$_XOR_'
+      - yosys -p 'read_slang smoke.v; prep -top smoke; check -assert; select -assert-count 1 t:$and; select -assert-count 1 t:$xor'
+      - sn -M smoke -o smoke.sn smoke.v
+      - test -s smoke.sn
+    files:
+      recipe:
+        - smoke.v
 
 about:
-  license: ISC
-  license_file: COPYING
+  license: ISC AND MIT AND BSD-2-Clause AND BSD-3-Clause AND Zlib AND bzip2-1.0.6 AND LicenseRef-ABC AND LicenseRef-Public-Domain
+  license_file:
+    - COPYING
+    - frontends/slang/lib/LICENSE
+    - libs/bigint/COPYING.txt
+    - libs/cxxopts/LICENSE
+    - libs/fst/LICENSE.txt
+    - libs/json11/LICENSE.txt
+    - libs/minisat/LICENSE
+    - libs/sha1/COPYING.txt
+    - libs/symfpu/LICENSE
+    - libs/symfpu/LICENSE-BSD
+    - abc/copyright.txt
+    - abc/tools/sn/copyright.txt
+    - abc/src/bdd/cudd/license
+    - abc/src/misc/btor/LICENSE.txt
+    - abc/src/misc/bzlib/LICENSE
+    - abc/src/misc/zlib/license
+    - abc/src/sat/bsat/license
+    - abc/src/sat/bsat2/LICENSE
+    - abc/src/sat/cadical/LICENSE
+    - abc/src/sat/glucose/license
+    - abc/src/sat/glucose2/license
+    - abc/src/sat/kissat/LICENSE
+    - abc/src/sat/satoko/LICENSE
+    - abc/src/sat/xsat/license
   summary: Yosys Open SYnthesis Suite
   description: |
     This is a framework for RTL synthesis tools. It currently has extensive Verilog-2005 support and provides a basic set of synthesis algorithms for various application domains.
