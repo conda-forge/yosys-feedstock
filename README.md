@@ -5,7 +5,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/yosys-feedstock
 
 Home: https://github.com/YosysHQ/yosys
 
-Package license: ISC
+Package license: ISC AND MIT AND BSD-2-Clause AND BSD-3-Clause AND Zlib AND bzip2-1.0.6 AND LicenseRef-ABC AND LicenseRef-Public-Domain
 
 Summary: Yosys Open SYnthesis Suite
 
