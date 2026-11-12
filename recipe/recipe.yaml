@@ -2,8 +2,8 @@ schema_version: 1
 
 context:
   name: yosys
-  version: "0.69"
-  sha256: 6dad6412cae417f5a53e2c943c2aee160162cfc1bdd31669230da1b7e3522571
+  version: "0.71"
+  sha256: 2ec7c2ee63bb9b4065d6d5fff2786a1455e834f90ede8eb1d47791153ebef2a5
 
 package:
   name: ${{ name|lower }}
